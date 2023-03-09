@@ -3,9 +3,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import maps.HashMapClass;
+
 public class App {
 
-    
+    HashMapClass<String> stringVariables = new HashMapClass<String>();
+    HashMapClass<Boolean> booleanVariables = new HashMapClass<Boolean>();
+    HashMapClass<Double> doubleVariables = new HashMapClass<Double>();
 
     public static void main(String[] args) throws Exception {
         App app =  new App();
@@ -46,5 +50,7 @@ public class App {
     }
 
   
-
+    public void pairs(String line){
+        
+    }
 }

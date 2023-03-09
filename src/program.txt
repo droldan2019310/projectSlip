@@ -1,3 +1,3 @@
-(setq x 10)
+(setq x (+ 5 2))
 (setq y 20)
 (setq z 30)
