@@ -1,33 +1,27 @@
 package stacks;
-import java.util.Vector;
-public class Stack <T>{
+import interfaces.Istack;
+import java.util.EmptyStackException;
 
+public class Stack <T> implements Istack<T> {
     //propiedades
-    private Vector<T> vector;
-    public Stack (){
-        vector = new Vector<T>();
+    Stack<T> stack = new Stack<>();
+    @Override
+    public void push(T item) {stack.push(item);
     }
-    public void push(T value) {
-        vector.add(value);
+    @Override
+    public T pop() throws EmptyStackException {
+        return stack.pop();
     }
-    public T pull() {
-        T value;
-        if (isEmpty()) //Si la pila está vacía
-            value = null;
-        else{ //Si se tiene algún elemento
-            value = peek();
-            vector.remove(vector.get(count()-1));
-        }
-        return value;
+    @Override
+    public T peek() throws EmptyStackException {
+        return stack.peek();
     }
-    public T peek() {
-        return vector.lastElement();
+    @Override
+    public boolean empty() {
+        return stack.empty();
     }
-    public int count() {
-        return vector.size();
+    @Override
+    public int size() {
+        return stack.size();
     }
-    public boolean isEmpty() {
-        return vector.isEmpty();
-    }
-
 }
