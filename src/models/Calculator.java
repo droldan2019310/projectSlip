@@ -1,53 +1,68 @@
-import java.util.Scanner;
-import java.util.Stack;
+package models;
 
-public class Calculator {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Ingrese la operación en formato prefix ");
+import interfaces.ICalculator;
 
-        String input = scanner.nextLine();
-        String[] tokens = input.split(" ");
+public final class Calculator implements ICalculator{
+    private static Calculator calculator;
 
-        Stack<Double> stack = new Stack<>();
-        for (int i = tokens.length - 1; i >= 0; i--) {
-            String token = tokens[i];
-            if (isNumber(token)) {
-                stack.push(Double.parseDouble(token));
-            } else {
-                double num1 = stack.pop();
-                double num2 = stack.pop();
-                double resultado = 0;
-                switch (token) {
-                    case "+":
-                        resultado = num1 + num2;
-                        break;
-                    case "-":
-                        resultado = num1 - num2;
-                        break;
-                    case "*":
-                        resultado = num1 * num2;
-                        break;
-                    case "/":
-                        resultado = num1 / num2;
-                        break;
-                    default:
-                        System.out.println("Operador inválido., vuelava a ingresar el dato");
-                        return;
-                }
-                stack.push(resultado);
-            }
+    /**
+     * singleton return instance of calculator
+     * @return
+     */
+    public static Calculator getInstance(){
+        if(calculator == null){
+            calculator = new Calculator();
         }
-
-        System.out.println("El resultado es: " + stack.pop());
+        return calculator;
     }
 
-    private static boolean isNumber(String token) {
-        try {
-            Double.parseDouble(token);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+    /**
+     * add two numbers
+     */
+    @Override
+    public float add(float a, float b) {
+        // TODO Auto-generated method stub
+        float result = a+b;
+        return result;
     }
+
+    /**
+     * substract two numbers
+     */
+    @Override
+    public float subtraction(float a, float b) {
+        // TODO Auto-generated method stub
+        float result = a-b;
+        return result;
+    }
+
+    /**
+     * multiply two numbers
+     */
+    @Override
+    public float multiplication(float a, float b) {
+        // TODO Auto-generated method stub
+        float result = a*b;
+        return result;
+    }
+
+    /**
+     * divide two numbers
+     */
+    @Override
+    public float division(float a, float b) {
+        // TODO Auto-generated method stub
+        float result = a/b;
+        return result;
+    }
+
+    /**
+     * method not used
+     */
+    @Override
+    public void getNextImput() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNextImput'");
+    }
+    
 }
