@@ -134,7 +134,19 @@ public class App {
                         }
                         break;
                     case "-":
-                        
+                        try{
+                            double item1 = Double.parseDouble(stackToken.pop());
+                            double item2 = Double.parseDouble(stackToken.pop());
+                            double result = calculator.subtraction(item1, item2);
+                            if(!actualName.equals("")){
+                                doubleVariables.add(actualName, result);
+                                actualName = "";
+                            }
+
+                        }catch(NumberFormatException e){
+                            e.printStackTrace();
+                            throw new Exception("NOT A NUMBER");
+                        } 
                         break;
                     case "/":
                         
