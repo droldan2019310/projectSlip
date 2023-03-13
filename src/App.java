@@ -85,7 +85,6 @@ public class App {
     public void validateCharacter() throws Exception{
         while(stackToken.size()!=0){
             String token = stackToken.pop();
-            
             if(token.equals("(")){
                 
                 token = stackToken.pop();
@@ -96,6 +95,14 @@ public class App {
                         stackToken.pop();
 
                         actualName = stackToken.pop();   
+                        if(actualName.length()>1){
+                            int x= actualName.length();
+
+                            while(x>1){
+                                stackToken.pop();
+                                x--;
+                            }
+                        }
                         if(stackToken.peek().equals("(")){
                         }else{
                             String value = stackToken.pop();
@@ -153,6 +160,7 @@ public class App {
 
                                     if(stringVariables.getValue(value)!=null){
                                         System.out.println(stringVariables.getValue(value));
+                                        
                                     }
 
                                     if(doubleVariables.getValue(value)!=null){
@@ -161,6 +169,15 @@ public class App {
 
                                     if(booleanVariables.getValue(value)!=null){
                                         System.out.println(booleanVariables.getValue(value));
+                                    }
+
+                                    if(value.length()>1){
+                                        int x= value.length();
+            
+                                        while(x>1){
+                                            stackToken.pop();
+                                            x--;
+                                        }
                                     }
 
                                 }
