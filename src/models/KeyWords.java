@@ -1,6 +1,10 @@
 package models;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import interfaces.IKeyWords;
+import stacks.Stack;
 
 public class KeyWords implements IKeyWords{
     
@@ -87,5 +91,52 @@ public class KeyWords implements IKeyWords{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'loop'");
     }
+
+    @Override
+    public Stack<String> separateWithPairs(String string) {
+        // TODO Auto-generated method stub
+        String patternLetters = "[a-zA-Z]";
+        String patternLettersNumbers = "[a-zA-Z0-9]+";
+        String patternAtom = "[\\d\\+\\-]?[\\d]*";
+        String patternSymbol = "[().]";
+
+        Stack<String> pairs = new Stack<String>();
+
+        
+        //run all the string
+        int y;
+        for(int x=0; x<string.length();x++){
+            y =x+1;
+            if(string.substring(x, y).matches(patternLetters) || string.substring(x, y).matches(patternLettersNumbers) || string.substring(x, y).matches(patternAtom)){
+                while(string.substring(x, y).matches(patternLetters) || string.substring(x, y).matches(patternLettersNumbers) || string.substring(x, y).matches(patternAtom)){
+                    y++;
+                }
+                pairs.push(string.substring(x, y-1));
+            }else if(string.substring(x, y).matches(patternSymbol)){
+                pairs.push(string.substring(x, y));
+            }
+        }
+       
+
+        return pairs;
+    }
+
+    @Override
+    public boolean print(String value) {
+        // TODO Auto-generated method stub
+
+            if(value.substring(0).equals("\"") && value.substring(value.length()).equals("\"")){
+                value = value.replaceAll("\"", value);
+                System.out.println(value);
+                return true;
+            }else{
+                return false;
+            }
+        
+    }
+    
+
+    
+
     
 }

@@ -9,7 +9,7 @@ public class Stack <T> implements Istack<T> {
 
     @Override
     public void push(T item) {
-         linkedList.push(item);
+         linkedList.add(item);
 
     }
     @Override
@@ -27,6 +27,10 @@ public class Stack <T> implements Istack<T> {
     @Override
     public int size() {
         return linkedList.size();
+    }
+
+    public T getvalue(int position){
+        return linkedList.get(position);
     }
 
 }

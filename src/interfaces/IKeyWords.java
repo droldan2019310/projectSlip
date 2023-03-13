@@ -1,5 +1,7 @@
 package interfaces;
 
+import stacks.Stack;
+
 public interface IKeyWords {
     
     public void commentNestable();
@@ -30,7 +32,8 @@ public interface IKeyWords {
 
     public void loop();
 
-    
+    public boolean print(String value);
 
+    public Stack<String> separateWithPairs(String string);
 
 }
