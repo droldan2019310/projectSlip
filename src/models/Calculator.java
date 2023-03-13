@@ -20,9 +20,9 @@ public final class Calculator implements ICalculator{
      * add two numbers
      */
     @Override
-    public float add(float a, float b) {
+    public double add(double a, double b) {
         // TODO Auto-generated method stub
-        float result = a+b;
+        double result = a+b;
         return result;
     }
 
@@ -30,9 +30,9 @@ public final class Calculator implements ICalculator{
      * substract two numbers
      */
     @Override
-    public float subtraction(float a, float b) {
+    public double subtraction(double a, double b) {
         // TODO Auto-generated method stub
-        float result = a-b;
+        double result = a-b;
         return result;
     }
 
@@ -40,9 +40,9 @@ public final class Calculator implements ICalculator{
      * multiply two numbers
      */
     @Override
-    public float multiplication(float a, float b) {
+    public double multiplication(double a, double b) {
         // TODO Auto-generated method stub
-        float result = a*b;
+        double result = a*b;
         return result;
     }
 
@@ -50,9 +50,9 @@ public final class Calculator implements ICalculator{
      * divide two numbers
      */
     @Override
-    public float division(float a, float b) {
+    public double division(double a, double b) {
         // TODO Auto-generated method stub
-        float result = a/b;
+        double result = a/b;
         return result;
     }
 

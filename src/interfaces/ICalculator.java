@@ -1,8 +1,8 @@
 package interfaces;
 
 public interface ICalculator {
-    public float  add(float a, float b);
-    public float  subtraction(float a, float b);
-    public float  multiplication(float a, float b);
-    public float  division(float a, float b);
+    public double  add(double a, double b);
+    public double  subtraction(double a, double b);
+    public double  multiplication(double a, double b);
+    public double  division(double a, double b);
 }

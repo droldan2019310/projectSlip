@@ -6,6 +6,7 @@ import java.text.NumberFormat;
 import java.util.stream.Collectors;
 
 import maps.HashMapClass;
+import models.Calculator;
 import models.KeyWords;
 import stacks.Stack;
 
@@ -22,6 +23,10 @@ public class App {
 
     KeyWords keyWords = new KeyWords();
     String actualName;
+
+
+    private Calculator calculator;
+
     public static void main(String[] args) throws Exception {
         App app =  new App();
 
@@ -30,6 +35,7 @@ public class App {
 
 
     public void start(){
+        calculator = Calculator.getInstance();
         readFile();
     }
 
@@ -110,7 +116,7 @@ public class App {
                         try{
                             double item1 = Double.parseDouble(stackToken.pop());
                             double item2 = Double.parseDouble(stackToken.pop());
-                            double result = item1+item2;
+                            double result = calculator.add(item1, item2);
                             if(!actualName.equals("")){
                                 doubleVariables.add(actualName,result);
                                 actualName = "";
