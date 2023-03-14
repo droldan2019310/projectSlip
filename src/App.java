@@ -130,9 +130,11 @@ public class App {
                         
                         break;
                     case "/":
-                        
+                        try{
+
                         break;
                     case "*":
+
                         
                         break;
                     case "print":
