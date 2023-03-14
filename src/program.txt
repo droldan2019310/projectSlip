@@ -1,2 +1,1 @@
-(setq x (+ 5 6))
-(print x)
+(print "HELLO WORLD")

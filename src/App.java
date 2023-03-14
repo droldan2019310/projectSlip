@@ -72,8 +72,11 @@ public class App {
     public void getTokens(String data){
         
         stackToken =  keyWords.separateWithPairs(data);
-        
-
+        int x=0;
+        // while(x != stackToken.size()){
+        //     System.out.println("PRINT: "+ stackToken.getvalue(x));
+        //     x++;
+        // }
         try {
             validateCharacter();
         } catch (Exception e) {
@@ -149,28 +152,53 @@ public class App {
                         stackToken.pop();
                         
                         String value = stackToken.pop();
+                        
                         if(value.equals("+") || value.equals("/") || value.equals("-") || value.equals("*")) {
                         }else{
                             try{
                                 double d = Double.parseDouble(value);
                                 System.out.println(d);
                             }catch(NumberFormatException e){
-                                boolean flag =  keyWords.print(value);
-                                if(!flag){
+                                if(value.equals("\"")){
+                                    
+                                    value = stackToken.pop();
+                                    int x=0;
+                                    while(x<value.length()-1){
+                                        stackToken.pop();
+                                        x++;
+                                    }
 
+                                    String finishValue = stackToken.pop();
+                                    while(!finishValue.equals("\"")){
+                                        if(stackToken.size()==0){
+                                            break;
+                                        }else{
+                                            value = value + " "+ finishValue;
+                                            x=0;
+                                            while(x<finishValue.length()-1){
+                                                stackToken.pop();
+                                                x++;
+                                            }
+                                            finishValue = stackToken.pop();
+                                        }
+                                    }
+
+                                    System.out.println(value);
+                                    
+                                }else{
                                     if(stringVariables.getValue(value)!=null){
                                         System.out.println(stringVariables.getValue(value));
                                         
                                     }
-
+    
                                     if(doubleVariables.getValue(value)!=null){
                                         System.out.println(doubleVariables.getValue(value));
                                     }
-
+    
                                     if(booleanVariables.getValue(value)!=null){
                                         System.out.println(booleanVariables.getValue(value));
                                     }
-
+    
                                     if(value.length()>1){
                                         int x= value.length();
             
@@ -179,11 +207,14 @@ public class App {
                                             x--;
                                         }
                                     }
-
                                 }
+                                
+
                             }
                         }
 
+                        
+                           
                         break;
                     default:
                         break;
