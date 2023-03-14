@@ -56,13 +56,5 @@ public final class Calculator implements ICalculator{
         return result;
     }
 
-    /**
-     * method not used
-     */
-    @Override
-    public void getNextImput() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNextImput'");
-    }
     
 }
