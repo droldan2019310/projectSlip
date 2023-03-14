@@ -177,7 +177,7 @@ public class App {
                         }catch(NumberFormatException e){
                             e.printStackTrace();
                             throw new Exception("NOT A NUMBER");
-
+                        }
                         break;
                     case "print":
                         stackToken.pop();
