@@ -2,6 +2,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.LineNumberReader;
+import java.io.RandomAccessFile;
 import java.text.NumberFormat;
 import java.util.stream.Collectors;
 
@@ -56,9 +58,14 @@ public class App {
             br = new BufferedReader(new FileReader(file));
             
             
-            String data =  br.lines().collect(Collectors.joining());
-            data = data.replace("\n", "").replace("\r", "");
-            getTokens(data);
+            
+            
+            RandomAccessFile raf=new RandomAccessFile(file,"r");
+            String text="";
+            for(String line=raf.readLine();line!=null;line=raf.readLine()){
+                text+=line+System.lineSeparator();
+            }
+            getTokens(text);
 
             
         } catch (IOException e) {
@@ -72,7 +79,7 @@ public class App {
     public void getTokens(String data){
         
         stackToken =  keyWords.separateWithPairs(data);
-        int x=0;
+        // int x=0;
         // while(x != stackToken.size()){
         //     System.out.println("PRINT: "+ stackToken.getvalue(x));
         //     x++;
