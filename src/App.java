@@ -79,11 +79,11 @@ public class App {
     public void getTokens(String data){
         
         stackToken =  keyWords.separateWithPairs(data);
-        // int x=0;
-        // while(x != stackToken.size()){
-        //     System.out.println("PRINT: "+ stackToken.getvalue(x));
-        //     x++;
-        // }
+         int x=0;
+         while(x != stackToken.size()){
+             System.out.println("PRINT: "+ stackToken.getvalue(x));
+             x++;
+         }
         try {
             validateCharacter();
         } catch (Exception e) {
@@ -256,6 +256,17 @@ public class App {
 
                         
                            
+                        break;
+                    case";":
+                        boolean foundNewLine = false;
+                        while(!stackToken.empty()){
+                            actualName = stackToken.pop();
+                            if (actualName == ("/n")){
+                                foundNewLine = true;
+                                break;
+                            }
+                        }
+
                         break;
                     default:
                         break;

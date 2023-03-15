@@ -99,6 +99,7 @@ public class KeyWords implements IKeyWords{
         String patternLettersNumbers = "[a-zA-Z0-9]+";
         String patternAtom = "[\\d\\+\\-]?[\\d]*";
         String patternQuote = "[\"]";
+        String patternComment = "[;]";
         String patternSymbol = "[().]";
 
         Stack<String> pairs = new Stack<String>();
@@ -108,8 +109,8 @@ public class KeyWords implements IKeyWords{
         int y;
         for(int x=0; x<string.length();x++){
             y =x+1;
-            if(string.substring(x, y).matches(patternLetters) || string.substring(x, y).matches(patternLettersNumbers) || string.substring(x, y).matches(patternAtom) || string.substring(x, y).matches(patternQuote)){
-                while(string.substring(x, y).matches(patternLetters) || string.substring(x, y).matches(patternLettersNumbers) || string.substring(x, y).matches(patternAtom) || string.substring(x, y).matches(patternQuote)){
+            if(string.substring(x, y).matches(patternLetters) || string.substring(x, y).matches(patternLettersNumbers) || string.substring(x, y).matches(patternAtom) || string.substring(x, y).matches(patternQuote) || string.substring(x, y).matches(patternComment)){
+                while(string.substring(x, y).matches(patternLetters) || string.substring(x, y).matches(patternLettersNumbers) || string.substring(x, y).matches(patternAtom) || string.substring(x, y).matches(patternQuote) || string.substring(x, y).matches(patternComment)){
                     y++;
                 }
                 pairs.push(string.substring(x, y-1));
