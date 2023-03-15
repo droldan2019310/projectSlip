@@ -265,7 +265,6 @@ public class App {
                         boolean flag= false;
                         while(!flag){
                             
-                            
                             if(!stackToken.peek().equals("(")){
                                 throw new Exception("NO COMIENZA CON PARENTESIS EL CONDICIONAL");
                             }
@@ -323,8 +322,13 @@ public class App {
                                             while(countParenthesit!=2){
                                                 if(stackToken.pop().equals(")")){
                                                     countParenthesit++;
-                                                    countCond--;
                                                 }
+
+                                                
+                                            }
+                                            if(stackToken.peek().equals(")")){
+                                                //finish
+                                                flag=true;
                                             }
                                         }
                                     }catch(NumberFormatException e){
