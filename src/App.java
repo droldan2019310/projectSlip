@@ -5,7 +5,11 @@ import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.RandomAccessFile;
 import java.text.NumberFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import org.w3c.dom.Text;
 
 import maps.HashMapClass;
 import models.Calculator;
@@ -264,6 +268,13 @@ public class App {
                 if(!token.equals(")")){
                     throw new Exception("NO COMIENZA CON PARENTESIS");
                 }
+                String input = token;
+                Pattern pattern = Pattern.compile("\\d");
+                Matcher matcher = pattern.matcher(input);
+                while(matcher.find()){
+                    System.out.println(matcher.group());
+                }
+                
             }
         
         }
