@@ -1,2 +1,2 @@
-(print "HELLO WORLD")
-(print "HELLO WORLD")
+(cond ((> 3 4) "Three is bigger than four!")
+      ((> 3 2) "Three is bigger than two!"))

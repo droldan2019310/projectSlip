@@ -257,6 +257,134 @@ public class App {
                         
                            
                         break;
+                    case "cond":
+                        int countCond= 2;
+                        stackToken.pop();
+                        stackToken.pop();
+                        stackToken.pop();
+                        boolean flag= false;
+                        while(!flag){
+                            
+                            
+                            if(!stackToken.peek().equals("(")){
+                                throw new Exception("NO COMIENZA CON PARENTESIS EL CONDICIONAL");
+                            }
+                            stackToken.pop();
+                            stackToken.pop();
+                            String symbol = stackToken.pop();
+                            switch (symbol) {
+                                case ">":
+                                    try{
+                                        double item1 = Double.parseDouble(stackToken.pop());
+                                        double item2 = Double.parseDouble(stackToken.pop());
+                                        if(item1>item2){
+                                            stackToken.pop();
+                                            if(stackToken.peek().equals("\"")){
+                                                stackToken.pop();
+                                                value = stackToken.pop();
+                                                int x=0;
+                                                while(x<value.length()-1){
+                                                    stackToken.pop();
+                                                    x++;
+                                                }
+
+                                                String finishValue = stackToken.pop();
+                                                while(!finishValue.equals("\"")){
+                                                    if(stackToken.size()==0){
+                                                        break;
+                                                    }else{
+                                                        value = value + " "+ finishValue;
+                                                        x=0;
+                                                        while(x<finishValue.length()-1){
+                                                            stackToken.pop();
+                                                            x++;
+                                                        }
+                                                        finishValue = stackToken.pop();
+                                                    }
+                                                }
+                                                	
+                                                System.out.println("value "+value);
+                                                flag=true;
+                                                
+                                                while(countCond!=2){
+                                                    String search = stackToken.pop();
+                                                    if(search.equals(")")){
+                                                        countCond++;
+                                                    }else{
+                                                        countCond=0;
+                                                    }
+                                                }
+                                            }else{
+                                                validateCharacter();
+                                            }
+                                            
+                                        }else{
+                                            int countParenthesit=0;
+                                            while(countParenthesit!=2){
+                                                if(stackToken.pop().equals(")")){
+                                                    countParenthesit++;
+                                                    countCond--;
+                                                }
+                                            }
+                                        }
+                                    }catch(NumberFormatException e){
+                                        e.printStackTrace();
+                                        throw new Exception("NOT A NUMBER");
+                                    }
+                                    break;
+                                case "<":
+                                    try{
+                                        double item1 = Double.parseDouble(stackToken.pop());
+                                        double item2 = Double.parseDouble(stackToken.pop());
+                                        if(item1<item2){
+                                            stackToken.pop();
+                                            if(stackToken.peek().equals("\"")){
+                                                stackToken.pop();
+                                                value = stackToken.pop();
+                                                int x=0;
+                                                while(x<value.length()-1){
+                                                    stackToken.pop();
+                                                    x++;
+                                                }
+
+                                                String finishValue = stackToken.pop();
+                                                while(!finishValue.equals("\"")){
+                                                    if(stackToken.size()==0){
+                                                        break;
+                                                    }else{
+                                                        value = value + " "+ finishValue;
+                                                        x=0;
+                                                        while(x<finishValue.length()-1){
+                                                            stackToken.pop();
+                                                            x++;
+                                                        }
+                                                        finishValue = stackToken.pop();
+                                                    }
+                                                }
+
+                                                System.out.println("value "+value);
+                                            }
+                                            validateCharacter();
+                                            flag=true;
+                                        }else{
+                                            int countParenthesit=0;
+                                            while(countParenthesit!=2){
+                                                if(stackToken.pop().equals(")")){
+                                                    countParenthesit++;
+                                                }
+                                            }
+                                        }
+                                    }catch(NumberFormatException e){
+                                        e.printStackTrace();
+                                        throw new Exception("NOT A NUMBER");
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                       
+                        break;
                     default:
                         break;
                 }
