@@ -1,3 +1,2 @@
-(defun square (x y)
-   (* x y))
-(square 2 3)
+(print "HELLO WORLD")
+(;print "HELLO WORLD")

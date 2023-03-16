@@ -5,7 +5,11 @@ import java.util.regex.Pattern;
 
 import interfaces.IKeyWords;
 import stacks.Stack;
+/**
 
+ KeyWords is an implementation of the IKeyWords interface.
+
+ */
 public class KeyWords implements IKeyWords{
     
    
@@ -42,7 +46,12 @@ public class KeyWords implements IKeyWords{
 
         return pairs;
     }
+    /**
 
+     Prints a string value if it is enclosed in double quotes.
+     @param value a string to be printed
+     @return true if the string value is enclosed in double quotes, false otherwise
+     */
     @Override
     public boolean print(String value) {
         // TODO Auto-generated method stub

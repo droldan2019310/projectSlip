@@ -17,30 +17,58 @@ import models.KeyWords;
 import stacks.Stack;
 
 public class App {
+    /**
 
+     HashMapClass instance for storing variables of type String.
+     */
     HashMapClass<String> stringVariables = new HashMapClass<String>();
+    /**
+
+     HashMapClass instance for storing variables of type Boolean.
+     */
     HashMapClass<Boolean> booleanVariables = new HashMapClass<Boolean>();
+    /**
+
+     HashMapClass instance for storing variables of type Double.
+     */
     HashMapClass<Double> doubleVariables = new HashMapClass<Double>();
     HashMapClass<String> defunVariables = new HashMapClass<String>();
 
+    /**
 
+     Stack instance for storing tokens.
+     */
     Stack<String> stackToken = new Stack<String>();
+    /**
+
+     Stack instance for storing numbers.
+     */
     Stack<Double> stackNumbers = new Stack<Double>();
 
+    /**
 
+     KeyWords instance for performing operations on variables.
+     */
     KeyWords keyWords = new KeyWords();
     String actualName="";
     String token;
 
     private Calculator calculator;
+    /**
 
+     @param args command line arguments.
+     @throws Exception if an error occurs while executing the application.
+     */
     public static void main(String[] args) throws Exception {
         App app =  new App();
 
         app.start();
     }
 
+    /**
 
+     Initializes the calculator instance and reads the file to perform calculations.
+     */
     public void start(){
         calculator = Calculator.getInstance();
         readFile();
@@ -80,7 +108,11 @@ public class App {
         }
     }
 
-  
+    /**
+
+     @param data the string of data to extract the tokens from.
+     @throws Exception if the validateCharacter method throws an exception.
+     */
     public void getTokens(String data){
         
         stackToken =  keyWords.separateWithPairs(data);
