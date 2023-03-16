@@ -21,6 +21,7 @@ public class App {
     HashMapClass<String> stringVariables = new HashMapClass<String>();
     HashMapClass<Boolean> booleanVariables = new HashMapClass<Boolean>();
     HashMapClass<Double> doubleVariables = new HashMapClass<Double>();
+    HashMapClass<String> defunVariables = new HashMapClass<String>();
 
 
     Stack<String> stackToken = new Stack<String>();
@@ -126,6 +127,9 @@ public class App {
                         break;
                     case "cond":
                         cond();
+                        break;
+                    case "defun":
+                        defun();
                         break;
                     default:
                         break;
@@ -456,5 +460,42 @@ public class App {
                 actualName = "";
             }   
         }
-   }
+    }
+
+    public void defun() throws Exception{
+        stackToken.pop();
+        stackToken.pop();
+        stackToken.pop();
+        stackToken.pop();
+        String patternLettersNumbers = "[a-zA-Z0-9]+";
+        String name = stackToken.pop();
+
+        if(!name.matches(patternLettersNumbers)){
+            throw new Exception("THE FUNCTION REQUIRE A NAME");
+        }
+
+        int x=0;
+        while(x<name.length()){
+            stackToken.pop();
+        }
+
+        if(!stackToken.peek().equals("(")){
+            throw new Exception("THE FUNCTION REQUIRE ()");
+        }
+
+        stackToken.pop();
+        x=0;
+        String function ="";
+        while(x!=2){
+            String temp = stackToken.pop();
+            if(temp.equals(")")){
+                x++;
+            }else{
+                function = function+temp;
+                x=0;
+            }
+        }
+
+        defunVariables.add(name, function);
+    }
 }
