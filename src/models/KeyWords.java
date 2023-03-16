@@ -8,89 +8,7 @@ import stacks.Stack;
 
 public class KeyWords implements IKeyWords{
     
-    @Override
-    public void commentNestable() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'commentNestable'");
-    }
-
-    @Override
-    public void commentEndLine() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'commentEndLine'");
-    }
-
-    @Override
-    public void greaterThan() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'greaterThan'");
-    }
-
-    @Override
-    public void lowerThan() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'lowerThan'");
-    }
-
-    @Override
-    public void greaterIqualThan() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'greaterIqualThan'");
-    }
-
-    @Override
-    public void lowerIqualThan() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'lowerIqualThan'");
-    }
-
-    @Override
-    public void defun() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'defun'");
-    }
-
-    @Override
-    public void equal() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'equal'");
-    }
-
-    @Override
-    public void equalP() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'equalP'");
-    }
-
-    @Override
-    public void setQ() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setQ'");
-    }
-
-    @Override
-    public void setF() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setF'");
-    }
-
-    @Override
-    public void set() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'set'");
-    }
-
-    @Override
-    public void cond() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cond'");
-    }
-
-    @Override
-    public void loop() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'loop'");
-    }
+   
 
     @Override
     public Stack<String> separateWithPairs(String string) {
@@ -102,7 +20,7 @@ public class KeyWords implements IKeyWords{
         String patternComment = "[;]";
         String patternSymbol = "[().]";
         String patternMayorMinor = "[><]";
-
+        String patternarithmetic = "[+\\-*/]";
         Stack<String> pairs = new Stack<String>();
 
         
@@ -110,8 +28,9 @@ public class KeyWords implements IKeyWords{
         int y;
         for(int x=0; x<string.length();x++){
             y =x+1;
-            if(string.substring(x, y).matches(patternLetters) || string.substring(x, y).matches(patternLettersNumbers) || string.substring(x, y).matches(patternAtom) || string.substring(x, y).matches(patternQuote) || string.substring(x, y).matches(patternMayorMinor)){
-                while(string.substring(x, y).matches(patternLetters) || string.substring(x, y).matches(patternLettersNumbers) || string.substring(x, y).matches(patternAtom) || string.substring(x, y).matches(patternQuote) || string.substring(x, y).matches(patternMayorMinor)){
+            if(string.substring(x, y).matches(patternLetters) || string.substring(x, y).matches(patternLettersNumbers) || string.substring(x, y).matches(patternAtom) || string.substring(x, y).matches(patternQuote) || string.substring(x, y).matches(patternMayorMinor) || string.substring(x, y).matches(patternarithmetic)){
+                while(string.substring(x, y).matches(patternLetters) || string.substring(x, y).matches(patternLettersNumbers) || string.substring(x, y).matches(patternAtom) || string.substring(x, y).matches(patternQuote) || string.substring(x, y).matches(patternMayorMinor)
+                || string.substring(x, y).matches(patternarithmetic)){
                     y++;
                 }
                 pairs.push(string.substring(x, y-1));

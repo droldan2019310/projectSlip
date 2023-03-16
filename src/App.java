@@ -29,7 +29,7 @@ public class App {
 
 
     KeyWords keyWords = new KeyWords();
-    String actualName;
+    String actualName="";
     String token;
 
     private Calculator calculator;
@@ -84,11 +84,11 @@ public class App {
     public void getTokens(String data){
         
         stackToken =  keyWords.separateWithPairs(data);
-         int x=0;
-         while(x != stackToken.size()){
-             System.out.println("PRINT: "+ stackToken.getvalue(x));
-             x++;
-         }
+        //  int x=0;
+        // while(x != stackToken.size()){
+        //     System.out.println("PRINT: "+ stackToken.getvalue(x));
+        //     x++;
+        // }
         try {
             validateCharacter();
         } catch (Exception e) {
@@ -101,7 +101,6 @@ public class App {
         while(stackToken.size()!=0){
             token = stackToken.pop();
             if(token.equals("(")){
-                
                 token = stackToken.pop();
                 switch(token){
                     case "setq":
@@ -132,12 +131,29 @@ public class App {
                         defun();
                         break;
                     default:
+                        //callfunction(token);
+                        int x=0;
+                        while(x<token.length()-1){
+                            stackToken.pop();
+                            x++;
+                        }
+                        String param= "";
+                        while(!stackToken.peek().equals(")")){
+                            if(param.equals("")){
+                                param= stackToken.pop();
+                            }else{
+                                param= param+" "+stackToken.pop();
+                            }
+                        }
+                        callfunction(token, param);
                         break;
                 }
             }else{
+                String patternAtom = "[\\d\\+\\-]?[\\d]*";
+
                 if(!token.equals(")")){
                     throw new Exception("NO COMIENZA CON PARENTESIS");
-                }else{
+                }else if(token.matches(patternAtom)){
                     atom();
                 }
                 
@@ -373,63 +389,106 @@ public class App {
     }
 
     public void add() throws Exception{
+        String value1 = stackToken.pop();
+        String value2 = stackToken.pop();
         try{
-            double item1 = Double.parseDouble(stackToken.pop());
-            double item2 = Double.parseDouble(stackToken.pop());
+            double item1 = Double.parseDouble(value1);
+            double item2 = Double.parseDouble(value2);
             double result = calculator.add(item1, item2);
             if(!actualName.equals("")){
                 doubleVariables.add(actualName,result);
                 actualName = "";
             }
+            System.out.println(result);
         }catch(NumberFormatException e){
-            e.printStackTrace();
-            throw new Exception("NOT A NUMBER");
+            if(doubleVariables.getValue(value1)!=null){
+                double item1 = doubleVariables.getValue(value1);
+                double item2 = doubleVariables.getValue(value2);
+                double result = calculator.add(item1, item2);
+                System.out.println(result);
+            }else{
+                e.printStackTrace();
+                throw new Exception("NOT A NUMBER");
+            }
+           
         }
     }
 
     public void substract() throws Exception{
+        String value1 = stackToken.pop();
+        String value2 = stackToken.pop();
         try{
-            double item1 = Double.parseDouble(stackToken.pop());
-            double item2 = Double.parseDouble(stackToken.pop());
+            double item1 = Double.parseDouble(value1);
+            double item2 = Double.parseDouble(value2);
             double result = calculator.subtraction(item1, item2);
             if(!actualName.equals("")){
                 doubleVariables.add(actualName, result);
                 actualName = "";
             }
+            System.out.println(result);
 
         }catch(NumberFormatException e){
-            e.printStackTrace();
-            throw new Exception("NOT A NUMBER");
+            if(doubleVariables.getValue(value1)!=null){
+                double item1 = doubleVariables.getValue(value1);
+                double item2 = doubleVariables.getValue(value2);
+                double result = calculator.subtraction(item1, item2);
+               
+                System.out.println(result);
+            }else{
+                e.printStackTrace();
+                throw new Exception("NOT A NUMBER");
+            }
         } 
     }
 
     public void divide() throws Exception{
+        String value1 = stackToken.pop();
+        String value2 = stackToken.pop();
         try{
-            double item1 = Double.parseDouble(stackToken.pop());
-            double item2 = Double.parseDouble(stackToken.pop());
+            double item1 = Double.parseDouble(value1);
+            double item2 = Double.parseDouble(value2);
             double result = calculator.division(item1, item2);
             if(!actualName.equals("")){
                 doubleVariables.add(actualName,result);
                 actualName = "";
             }
+            System.out.println(result);
         }catch(NumberFormatException e){
-            e.printStackTrace();
-            throw new Exception("NOT A NUMBER");
+            if(doubleVariables.getValue(value1)!=null){
+                double item1 = doubleVariables.getValue(value1);
+                double item2 = doubleVariables.getValue(value2);
+                double result = calculator.division(item1, item2);
+                System.out.println(result);
+            }else{
+                e.printStackTrace();
+                throw new Exception("NOT A NUMBER");
+            }
         }
     }
 
     public void multiply() throws Exception{
+        String value1 = stackToken.pop();
+        String value2 = stackToken.pop();
         try{
-            double item1 = Double.parseDouble(stackToken.pop());
-            double item2 = Double.parseDouble(stackToken.pop());
+            double item1 = Double.parseDouble(value1);
+            double item2 = Double.parseDouble(value2);
             double result = calculator.multiplication(item1, item2);
             if(!actualName.equals("")){
                 doubleVariables.add(actualName,result);
                 actualName = "";
             }
+            System.out.println(result);
+
         }catch(NumberFormatException e){
-            e.printStackTrace();
-            throw new Exception("NOT A NUMBER");
+            if(doubleVariables.getValue(value1)!=null){
+                double item1 = doubleVariables.getValue(value1);
+                double item2 = doubleVariables.getValue(value2);
+                double result = calculator.multiplication(item1, item2);
+                System.out.println(result);
+            }else{
+                e.printStackTrace();
+                throw new Exception("NOT A NUMBER");
+            }
         }
     }
 
@@ -469,16 +528,15 @@ public class App {
         stackToken.pop();
         String patternLettersNumbers = "[a-zA-Z0-9]+";
         String name = stackToken.pop();
-
         if(!name.matches(patternLettersNumbers)){
             throw new Exception("THE FUNCTION REQUIRE A NAME");
         }
 
         int x=0;
-        while(x<name.length()){
+        while(x<name.length()-1){
             stackToken.pop();
+            x++;
         }
-
         if(!stackToken.peek().equals("(")){
             throw new Exception("THE FUNCTION REQUIRE ()");
         }
@@ -491,11 +549,66 @@ public class App {
             if(temp.equals(")")){
                 x++;
             }else{
-                function = function+temp;
+                if(function.equals("")){
+                    function =temp;
+                }else{
+                    function = function+" "+temp;
+                }
                 x=0;
             }
         }
-
+        function = function+"))";
         defunVariables.add(name, function);
+    }
+
+
+    public void callfunction(String name, String params) throws Exception{
+        if(stackToken.peek().equals(")")){
+            stackToken.pop();
+        }
+
+    
+        Stack<String> stackTokenfunction = new Stack<String>();
+        if(defunVariables.getValue(name)==null){
+            throw new Exception("name defun invalid");
+        }
+
+        String function = defunVariables.getValue(name);
+
+        stackTokenfunction = keyWords.separateWithPairs(function);
+
+
+        
+       
+
+
+
+        if(token.equals("(")){
+            //no tiene params
+            stackToken.push("(");
+        }else if(params.length()>0){
+            String[] paramsArray = params.split(" ");
+            for (String string : paramsArray) {
+                String token = stackTokenfunction.pop();
+                try{
+                    double item = Double.parseDouble(string);
+                    doubleVariables.add(token,item);
+                } catch (NumberFormatException e) {
+                    // string
+                    stringVariables.add(token,string);
+                }
+            }
+        }
+        
+        while(stackTokenfunction.size()!=1){
+            String tokenValue = stackTokenfunction.pop();
+            stackToken.push(tokenValue);
+        }
+        // int x=0;
+        // while(x != stackToken.size()){
+        //     System.out.println("PRINT 2: "+ stackToken.getvalue(x));
+        //     x++;
+        // }
+        
     }
 }

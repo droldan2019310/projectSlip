@@ -1,1 +1,3 @@
-(cond ((> 3 4) "Three is bigger than four!"))
+(defun square (x y)
+   (* x y))
+(square 2 3)
