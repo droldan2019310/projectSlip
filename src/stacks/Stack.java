@@ -7,10 +7,14 @@ public class Stack <T> implements Istack<T> {
     //propiedades
     private LinkedList <T> linkedList = new LinkedList();
 
+
+    public void pushFirst(T item){
+        linkedList.push(item);
+    }
+
     @Override
     public void push(T item) {
          linkedList.add(item);
-
     }
     @Override
     public T pop() throws EmptyStackException {

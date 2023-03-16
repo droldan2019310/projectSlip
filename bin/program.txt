@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-(cond ((> 3 4) "Three is bigger than four!"))
-=======
-(print "HELLO WORLD")
-(;print "HELLO WORLD")
->>>>>>> origin/comments
+(defun square (x y)
+   (* x y))
+(square 2 3)
