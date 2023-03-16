@@ -5,33 +5,52 @@ import java.util.regex.Pattern;
 
 import interfaces.IKeyWords;
 import stacks.Stack;
+/**
 
+ KeyWords is an implementation of the IKeyWords interface.
+
+ */
 public class KeyWords implements IKeyWords{
-    
+    /**
+
+     Throws an UnsupportedOperationException because the method is unimplemented.
+     */
     @Override
     public void commentNestable() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'commentNestable'");
     }
+    /**
 
+     Throws an UnsupportedOperationException because the method is unimplemented.
+     */
     @Override
     public void commentEndLine() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'commentEndLine'");
     }
+    /**
 
+     Throws an UnsupportedOperationException because the method is unimplemented.
+     */
     @Override
     public void greaterThan() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'greaterThan'");
     }
+    /**
 
+     Throws an UnsupportedOperationException because the method is unimplemented.
+     */
     @Override
     public void lowerThan() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'lowerThan'");
     }
+    /**
 
+     Throws an UnsupportedOperationException because the method is unimplemented.
+     */
     @Override
     public void greaterIqualThan() {
         // TODO Auto-generated method stub
@@ -43,7 +62,10 @@ public class KeyWords implements IKeyWords{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'lowerIqualThan'");
     }
+    /**
 
+     Throws an UnsupportedOperationException because the method is unimplemented.
+     */
     @Override
     public void defun() {
         // TODO Auto-generated method stub
@@ -56,7 +78,7 @@ public class KeyWords implements IKeyWords{
         throw new UnsupportedOperationException("Unimplemented method 'equal'");
     }
 
-    @Override
+     @Override
     public void equalP() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'equalP'");
@@ -91,7 +113,12 @@ public class KeyWords implements IKeyWords{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'loop'");
     }
+    /**
 
+     Esta clase implementa el método separateWithPairs, que toma una cadena de texto y separa sus elementos en una pila.
+     Los elementos se separan en función de distintos patrones de caracteres
+
+     */
     @Override
     public Stack<String> separateWithPairs(String string) {
         // TODO Auto-generated method stub
@@ -122,7 +149,12 @@ public class KeyWords implements IKeyWords{
 
         return pairs;
     }
+    /**
 
+     Prints a string value if it is enclosed in double quotes.
+     @param value a string to be printed
+     @return true if the string value is enclosed in double quotes, false otherwise
+     */
     @Override
     public boolean print(String value) {
         // TODO Auto-generated method stub
