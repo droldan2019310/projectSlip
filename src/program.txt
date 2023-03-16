@@ -1,2 +1,3 @@
-(print "HELLO WORLD")
-(;print "HELLO WORLD")
+(defun square (x y)
+   (* x y))
+(square 2 7)

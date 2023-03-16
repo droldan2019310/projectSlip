@@ -162,6 +162,7 @@ public class App {
                     case "defun":
                         defun();
                         break;
+
                     default:
                         //callfunction(token);
                         int x=0;
